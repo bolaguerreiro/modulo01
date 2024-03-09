@@ -26,26 +26,30 @@ class Produto {
 }
 // Classe Pessoa
 class Pessoa {
-    nome;
-    idade;
-    profissao;
-    constructor(nomePessoa, idadePessoa, profissaoPessoa) {
-      this.nome = nomePessoa;
-      this.idade = idadePessoa;
-      this.profissao = profissaoPessoa;
-    }
+  constructor(nomePessoa, idadePessoa, profissaoPessoa) {
+    this.nome = nomePessoa;
+    this.idade = idadePessoa;
+    this.profissao = profissaoPessoa;
+  }
 }
 // Classe Cliente herda Pessoa
 class Cliente extends Pessoa {
-    telefone;
-    email;
-    clienteDesde;
-    constructor (nomePessoa, idadePessoa, profissaoPessoa, numeroTelefone, email, clienteDesde) {
-        super (nomePessoa, idadePessoa,profissaoPessoa);
-        this.telefone = numeroTelefone;
-        this.email = email;
-        this.clienteDesde = clienteDesde;
-    }
+  constructor(
+    nomePessoa,
+    idadePessoa,
+    profissaoPessoa,
+    numeroTelefone,
+    email,
+    clienteDesde
+  ) {
+    super(nomePessoa, idadePessoa, profissaoPessoa);
+    this.telefone = numeroTelefone;
+    this.email = email;
+    this.clienteDesde = clienteDesde;
+  }
 }
-
-
+let caneta = new Produto ("Caneta Bic Azul", 7, 12)
+console.log(caneta)
+caneta.Repor(7)
+caneta.MostraEstoque()
+caneta.Vender(15)
