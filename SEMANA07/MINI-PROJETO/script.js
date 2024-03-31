@@ -53,3 +53,5 @@ console.log(caneta)
 caneta.Repor(7)
 caneta.MostraEstoque()
 caneta.Vender(15)
+caneta.novoValor = 7.5
+console.log(caneta)
