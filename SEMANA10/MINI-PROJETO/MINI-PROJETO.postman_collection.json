@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "312a23f4-65aa-472c-b4a8-48a69b7f936d",
+		"name": "MINI-PROJETO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33911791"
+	},
+	"item": [
+		{
+			"name": "Listar_Produtos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/produtos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"produtos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Incluir_produtos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n     \"nomeProduto\":\"Calça\",\r\n     \"preco\": 125.86,\r\n     \"descricao\": \"Sarja\"\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/cadastra_produtos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"cadastra_produtos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alteracao_de_produto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeProduto\": \"Bermuda\",\r\n    \"descricao\": \"Bermuda cor cinza\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/produtos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"produtos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista_um_determinado_produto",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3333/produtos/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"produtos",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
