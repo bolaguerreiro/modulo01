@@ -1,59 +1,128 @@
+// const express = require('express');
+// const app = express();
+// const PORT = 3333;
+
+// app.use(express.json())
+
+// // Lista de usuários (simulando um "banco de dados" em memória)
+// let users = [];
+
+// // 1. Criação - Rota para adicionar um novo usuario
+// // app.post('/users', (req, res) => {
+// //     const usuario = req.body;
+// //     users.id = users.length > 0 ? users[users.length - 1].id + 1 : 1;
+// //     users.push(usuario);
+// //     res.status(201).send('Usuario adicionada com sucesso.');
+// // });
+
+// app.post("/users", (req,res) => {
+//     const {nome, email, data_cadastro} = req.body;
+//  //   const user = {nome, email, data_cadastro}
+//     user.id = users.length > 0 ? users[users.length -1].id + 1 : 1;
+//     users.push(users);
+//     res.status(201).send("Sucesso ")
+// })
+// app.get("/users", (req, res) => {
+//     res.json(users)
+// })
+
+// // // 2. Leitura - Rota para obter todas os usuarios
+// // app.get('/users', (req, res) => { 
+// //     res.json(users);
+// // });
+
+// // Rota para obter uma pessoa por ID
+// app.get('/users/:id', (req, res) => {
+//     const { id } = req.params;
+//     const usuario = users.find((usuario) => usuario.id === parseInt(id));
+//     if (!usuario) {
+//         res.status(404).send('Usuario não encontrado.');
+//         return;
+//     }
+//     res.json(usuario);
+// });
+
+// // Rota para atualizar um usuario por ID
+// app.put('/users/:id', (req, res) => {
+//     const { id } = req.params;
+//     const newData = req.body;
+//     const index = users.findIndex(usuario => users.id === parseInt(id));
+//     if (index === -1) {
+//         res.status(404).send('Usuario não encontrado.');
+//         return;
+//     }
+//     usuario[index] = { ...users[index], ...newData };
+//     res.status(200).send('Usuario atualizado com sucesso.');
+// });
+
+// // Rota para deletar uma pessoa por ID
+// app.delete('/pessoas/:id', (req, res) => {
+//     const { id } = req.params;
+//     const index = pessoas.findIndex(pessoa => pessoa.id === parseInt(id));
+//     if (index === -1) {
+//         res.status(404).send('Pessoa não encontrada.');
+//         return;
+//     }
+//     pessoas.splice(index, 1);
+//     res.status(200).send('Pessoa deletada com sucesso.');
+// });
+
+// app.listen(PORT, () => {
+//     console.log(`Servidor rodando em http://localhost:${PORT}`);
+// });
 const express = require('express');
 const app = express();
 const PORT = 3333;
 
-// 1. Criação - Rota para adicionar um novo usuario
-app.post('/users', (req, res) => {
-    const usuario = req.body;
-    users.id = users.length > 0 ? users[users.length - 1].id + 1 : 1;
-    users.push(usuario);
-    res.status(201).send('Usuario adicionada com sucesso.');
-});
+app.use(express.json()); // Middleware para fazer o parsing do corpo da requisição em JSON
 
-// Lista de usuários (simulando um "banco de dados" em memória)
 let users = [];
 
-// 2. Leitura - Rota para obter todas os usuarios
-app.get('/users', (req, res) => { 
+app.post("/users", (req, res) => {
+    const { nome, email, data_cadastro } = req.body;
+    const user = { nome, email, data_cadastro }; // Criação do objeto de usuário
+    user.id = users.length > 0 ? users[users.length - 1].id + 1 : 1; // Atribuição do ID
+    users.push(user); // Adiciona o usuário ao array
+    res.status(201).send("Usuário adicionado com sucesso.");
+});
+
+app.get("/users", (req, res) => {
     res.json(users);
 });
 
-// Rota para obter uma pessoa por ID
 app.get('/users/:id', (req, res) => {
     const { id } = req.params;
-    const usuario = users.find(users => users.id === parseInt(id));
+    const usuario = users.find((usuario) => usuario.id === parseInt(id));
     if (!usuario) {
-        res.status(404).send('Usuario não encontrada.');
+        res.status(404).send('Usuário não encontrado.');
         return;
     }
     res.json(usuario);
 });
 
-// Rota para atualizar um usuario por ID
 app.put('/users/:id', (req, res) => {
     const { id } = req.params;
     const newData = req.body;
-    const index = users.findIndex(usuario => users.id === parseInt(id));
+    const index = users.findIndex(usuario => usuario.id === parseInt(id));
     if (index === -1) {
-        res.status(404).send('Usuario não encontrado.');
+        res.status(404).send('Usuário não encontrado.');
         return;
     }
-    usuario[index] = { ...users[index], ...newData };
-    res.status(200).send('Usuario atualizado com sucesso.');
+    users[index] = { ...users[index], ...newData }; // Atualiza os dados do usuário
+    res.status(200).send('Usuário atualizado com sucesso.');
 });
 
-// Rota para deletar uma pessoa por ID
-app.delete('/pessoas/:id', (req, res) => {
+app.delete('/users/:id', (req, res) => {
     const { id } = req.params;
-    const index = pessoas.findIndex(pessoa => pessoa.id === parseInt(id));
+    const index = users.findIndex(user => user.id === parseInt(id));
     if (index === -1) {
-        res.status(404).send('Pessoa não encontrada.');
+        res.status(404).send('Usuário não encontrado.');
         return;
     }
-    pessoas.splice(index, 1);
-    res.status(200).send('Pessoa deletada com sucesso.');
+    users.splice(index, 1);
+    res.status(200).send('Usuário deletado com sucesso.');
 });
 
 app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
+    console.log(Servidor rodando em http://localhost:${PORT});
 });
