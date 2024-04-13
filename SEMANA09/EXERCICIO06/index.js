@@ -6,6 +6,7 @@ app.use(express.json()); // Middleware para fazer o parsing do corpo da requisi�
 
 let users = [];
 
+// ADICIONA NOVO USUARIO
 app.post("/users", (req, res) => {
     const { nome, email, data_cadastro } = req.body;
     const user = { nome, email, data_cadastro }; // Criação do objeto de usuário
@@ -14,10 +15,7 @@ app.post("/users", (req, res) => {
     res.status(201).send("Usuário adicionado com sucesso.");
 });
 
-app.get("/users", (req, res) => {
-    res.json(users);
-});
-
+// LISTA TODOS OS USUARIOS
 app.get('/users/:id', (req, res) => {
     const { id } = req.params;
     const usuario = users.find((usuario) => usuario.id === parseInt(id));
