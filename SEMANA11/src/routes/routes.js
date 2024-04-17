@@ -4,7 +4,7 @@ const Curso = require('../models/Curso')
 
 const routes = new Router()
 
-router.get('/', async (req, res) => {
+routes.get('/', async (req, res) => {
     res.send('api rodando!'); 
 });
 
@@ -35,4 +35,4 @@ routes.post('/cursos', async (req, res) => {
 
 })
 
-module.exports = router;
+module.exports = routes;
