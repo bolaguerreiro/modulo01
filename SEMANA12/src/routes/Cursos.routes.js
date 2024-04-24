@@ -1,13 +1,14 @@
 const { Router } = require('express') // 
-const Curso = require('../models/curso')
-const routes = new Router()
+const Curso = require('../models/Curso')
+const { auth } = require('../middleware/auth')
+const cursoRoutes = new Router()
 
 cursoRoutes.get('/', async (req, res) => {
     res.send('api rodando!'); 
 });
 
 //EXERCICIO 01 - POST - Rota de Cadastro de Curso
-cursoRoutes.post('/cursos', async (req, res) => {
+cursoRoutes.post('/', auth, async (req, res) => {
     try {
         const nome = req.body.nome
         const duracao_horas = req.body.duracao_horas
@@ -35,7 +36,7 @@ cursoRoutes.post('/cursos', async (req, res) => {
 })
 
 //EXERCICIO 02 - ROTA (GET) DE LISTAGEM DE CURSOS
-cursoRoutes.get('/cursos', async (req,res) => {
+cursoRoutes.get('/', auth, async (req,res) => {
     try {
         const curso = await Curso.findAll()
         res.json(curso)
@@ -47,7 +48,7 @@ cursoRoutes.get('/cursos', async (req,res) => {
 })
 
 // EXERCICIO 03 - PESQUISA UM CURSO - RECURSO QUERY
-cursoRoutes.get('/cursos', async (req,res) => {
+cursoRoutes.get('/', auth, async (req,res) => {
     try {
         let params = {}
 
@@ -71,7 +72,7 @@ cursoRoutes.get('/cursos', async (req,res) => {
 })
 
 // EXERCICIO 04 - PUT - ATUALIZACOES DE CURSOS
-cursoRoutes.put('/cursos/:id', async (req, res) => {
+cursoRoutes.put('/:id', auth, async (req, res) => {
     try {
         const { id } = req.params
 
@@ -94,7 +95,7 @@ cursoRoutes.put('/cursos/:id', async (req, res) => {
     
 })
 //EXERCICIO 05 - ROTA DELEÇÃO DE CURSO
-cursoRoutes.delete('/cursos/:id', async (req,res) => {
+cursoRoutes.delete('/:id', auth, async (req,res) => {
     try {
         const id =  req.params.id
         const curso = await Curso.findByPk(id)

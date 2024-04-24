@@ -1,7 +1,11 @@
+const { Router } = require('express') // 
+const Professor = require('../models/professor')
+const professorRoutes = new Router()
+
 //-------------------- EXERCICIO 06 - CRUD PROFESSORES --------------------
 
 //POST - Rota de Cadastro de Professores
-professorRoutes.post('/professores', async (req, res) => {
+professorRoutes.post('/', async (req, res) => {
     try {
         const nome = req.body.nome
         const disciplina = req.body.disciplina
@@ -29,7 +33,7 @@ professorRoutes.post('/professores', async (req, res) => {
 })
 
 //ROTA GET -LISTAGEM DE PROFESSORES
-professorRoutes.get('/professores', async (req,res) => {
+professorRoutes.get('/', async (req,res) => {
     try {
         const professor = await Professor.findAll()
         res.json(professor)
@@ -41,7 +45,7 @@ professorRoutes.get('/professores', async (req,res) => {
 })
 
 // ROTA GET - PESQUISA UM DETERMINADO PROFESSOR - RECURSO QUERY
-professorRoutes.get('/professor', async (req,res) => {
+professorRoutes.get('/', async (req,res) => {
     try {
         let params = {}
 
@@ -65,7 +69,7 @@ professorRoutes.get('/professor', async (req,res) => {
 })
 
 // ROTA PUT - ATUALIZACOES DE PROFESSORES
-professorRoutes.put('/professores/:id', async (req, res) => {
+professorRoutes.put('/:id', async (req, res) => {
     try {
         const { id } = req.params
 
@@ -89,7 +93,7 @@ professorRoutes.put('/professores/:id', async (req, res) => {
 })
 
 //ROTA DELETE - EXCLUSÃO DE UM PROFESSOR
-professorRoutes.delete('/professores/:id', async (req,res) => {
+professorRoutes.delete('/:id', async (req,res) => {
     try {
         const id =  req.params.id
         const professor = await Professor.findByPk(id)

@@ -1,4 +1,4 @@
-const { Router, query } = require('express') // 
+const { Router } = require('express') // 
 const Aluno = require('../models/Aluno')
 
 const { sign } = require('jsonwebtoken')
