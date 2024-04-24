@@ -1,5 +1,6 @@
 const { Router } = require('express') // 
 const Professor = require('../models/professor')
+const { auth } = require('../middleware/auth')
 const professorRoutes = new Router()
 
 //-------------------- EXERCICIO 06 - CRUD PROFESSORES --------------------
@@ -33,7 +34,7 @@ professorRoutes.post('/', async (req, res) => {
 })
 
 //ROTA GET -LISTAGEM DE PROFESSORES
-professorRoutes.get('/', async (req,res) => {
+professorRoutes.get('/', auth, async (req,res) => {
     try {
         const professor = await Professor.findAll()
         res.json(professor)
@@ -45,7 +46,7 @@ professorRoutes.get('/', async (req,res) => {
 })
 
 // ROTA GET - PESQUISA UM DETERMINADO PROFESSOR - RECURSO QUERY
-professorRoutes.get('/', async (req,res) => {
+professorRoutes.get('/', auth, async (req,res) => {
     try {
         let params = {}
 
@@ -69,7 +70,7 @@ professorRoutes.get('/', async (req,res) => {
 })
 
 // ROTA PUT - ATUALIZACOES DE PROFESSORES
-professorRoutes.put('/:id', async (req, res) => {
+professorRoutes.put('/:id', auth, async (req, res) => {
     try {
         const { id } = req.params
 
@@ -93,7 +94,7 @@ professorRoutes.put('/:id', async (req, res) => {
 })
 
 //ROTA DELETE - EXCLUSÃO DE UM PROFESSOR
-professorRoutes.delete('/:id', async (req,res) => {
+professorRoutes.delete('/:id', auth, async (req,res) => {
     try {
         const id =  req.params.id
         const professor = await Professor.findByPk(id)

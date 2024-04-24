@@ -3,10 +3,6 @@ const Curso = require('../models/Curso')
 const { auth } = require('../middleware/auth')
 const cursoRoutes = new Router()
 
-cursoRoutes.get('/', async (req, res) => {
-    res.send('api rodando!'); 
-});
-
 //EXERCICIO 01 - POST - Rota de Cadastro de Curso
 cursoRoutes.post('/', auth, async (req, res) => {
     try {
